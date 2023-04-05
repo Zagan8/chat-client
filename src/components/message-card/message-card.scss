@@ -1,0 +1,12 @@
+.message-card {
+  border: 1px solid;
+  padding: 10px;
+  background: #82abed;
+  margin: 10px;
+  border-radius: 10px;
+  width: fit-content;
+
+  &.author-message {
+    background: #14e03a;
+  }
+}

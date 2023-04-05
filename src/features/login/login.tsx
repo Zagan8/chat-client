@@ -1,15 +1,17 @@
 import { Button, Form, Input } from "antd";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { userStore } from "../../stores/user-store";
+import { observer } from "mobx-react-lite";
 
 const onFinishFailed = (errorInfo: any) => {
   console.log("Failed:", errorInfo);
 };
 const Login: React.FC = () => {
   const navigate = useNavigate();
-  const onFinish = (values: any) => {
+  const onFinish = (name: { name: string }) => {
+    userStore.setCurrentUser(name.name);
     navigate("/main");
-    console.log("Success:", values);
   };
   return (
     <div className="form-container">
@@ -42,4 +44,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default observer(Login);

@@ -1,0 +1,29 @@
+.chat {
+  .input-container {
+    display: flex;
+
+    .send-btn {
+      padding: 15px;
+      background: #14e03a;
+      border-radius: 30px;
+      color: #ffff;
+      margin-left: 10px;
+      font-size: 25px;
+      svg {
+        position: relative;
+        left: 3px;
+      }
+    }
+
+    .message-input {
+      border-radius: 30px;
+    }
+  }
+  .message-card-container {
+    display: flex;
+    justify-content: flex-end;
+    &.author-message {
+      justify-content: unset;
+    }
+  }
+}

@@ -1,6 +1,5 @@
 import React from "react";
-import "./App.css";
-import "./features/features.scss";
+import "./App.scss";
 import ChatRouter from "./routers/chat-router";
 
 function App() {

@@ -1,0 +1,17 @@
+.users-panel {
+  background: white;
+  height: 100%;
+  border-radius: 0 25px 25px 0;
+  margin-right: 10px;
+
+  .connected-user-header {
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 10px;
+  }
+  .connected-user {
+    font-size: 20px;
+    margin: 10px;
+  }
+}
