@@ -2,9 +2,32 @@
   border: 1px solid;
   padding: 10px;
   background: #82abed;
-  margin: 10px;
+  margin: 20px;
   border-radius: 10px;
   width: fit-content;
+  position: relative;
+
+  .message-author {
+    position: absolute;
+    top: -22px;
+    left: 1px;
+    color: white;
+    font-weight: bold;
+  }
+  .message-text-time-container {
+    display: flex;
+    justify-content: space-between;
+    min-width: 80px;
+    .message-created-at {
+      font-size: 8px;
+      color: #ffff;
+      position: relative;
+      top: 12px;
+    }
+    .message-text {
+      padding-right: 5px;
+    }
+  }
 
   &.author-message {
     background: #14e03a;

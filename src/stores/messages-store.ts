@@ -3,6 +3,8 @@ import { makeObservable, observable } from "mobx";
 export interface Message {
   author: string;
   text: string;
+
+  createdAt?: string;
 }
 class MessageStore {
   @observable
@@ -12,7 +14,6 @@ class MessageStore {
   }
 
   setMessages(messagesInfo: Message[]) {
-    console.log(messagesInfo);
     if (messagesInfo) {
       this.messages = [...messagesInfo];
     }

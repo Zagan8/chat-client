@@ -1,8 +1,16 @@
-
-.form-container {
-  height: 100vh;
+.login {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  .form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    width: 400px;
+    border-radius: 25px;
+    position: absolute;
+    top: 200px;
+  }
 }

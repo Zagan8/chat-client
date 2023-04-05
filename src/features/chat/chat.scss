@@ -1,4 +1,8 @@
 .chat {
+  .messages-box {
+    overflow-y: scroll;
+  }
+
   .input-container {
     display: flex;
 

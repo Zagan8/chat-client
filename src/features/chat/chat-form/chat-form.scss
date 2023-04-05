@@ -1,0 +1,24 @@
+.chat-form {
+  .send-button {
+    width: 60px;
+    height: 60px;
+    background: #14e03a;
+    border-radius: 30px;
+    color: #ffff;
+    margin-left: 10px;
+    font-size: 25px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .send-icon {
+      position: relative;
+      left: 3px;
+    }
+  }
+
+  .message-input {
+    height: 40px;
+    border-radius: 30px;
+  }
+}

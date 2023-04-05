@@ -1,4 +1,4 @@
-import { makeObservable, observable } from "mobx";
+import { action, makeObservable, observable } from "mobx";
 
 export interface User {
   name: string;
@@ -19,6 +19,16 @@ class UserStore {
   }
   setCurrentUser(userName: string) {
     this.currentUser = userName;
+  }
+
+  @action
+  deleteConnectedUser(userSocketId: string) {
+    const indexOfUserToDelete = this.connectedUsers.findIndex(
+      (connectedUser) => connectedUser.socketId === userSocketId
+    );
+    if (indexOfUserToDelete > -1) {
+      this.connectedUsers.splice(indexOfUserToDelete, 1);
+    }
   }
 }
 
