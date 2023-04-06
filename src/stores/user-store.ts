@@ -1,12 +1,8 @@
 import { action, makeObservable, observable } from "mobx";
 
-export interface User {
-  name: string;
-  _id: string;
-}
 class UserStore {
   @observable
-  connectedUsers: User[] = [];
+  connectedUsers: string[] = [];
 
   @observable
   currentUser: string = "";
@@ -14,7 +10,7 @@ class UserStore {
     makeObservable(this);
   }
 
-  setConnectedUsers(users: User[]) {
+  setConnectedUsers(users: string[]) {
     this.connectedUsers = [...users];
   }
   setCurrentUser(userName: string) {
@@ -22,16 +18,19 @@ class UserStore {
   }
 
   @action
-  deleteConnectedUser(id: string) {
+  deleteConnectedUser(userName: string) {
     const indexOfUserToDelete = this.connectedUsers.findIndex(
       (connectedUser) => {
-        console.log(id, connectedUser._id);
-        return connectedUser._id === id;
+        return connectedUser === userName;
       }
     );
     if (indexOfUserToDelete > -1) {
       this.connectedUsers.splice(indexOfUserToDelete, 1);
     }
+  }
+  @action
+  addConnectedUser(user: string) {
+    this.connectedUsers.push(user);
   }
 }
 

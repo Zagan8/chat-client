@@ -1,28 +1,30 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Col, Layout, Row, Tooltip } from "antd";
 import Chat from "../chat/chat";
 import UsersPanel from "../users-panel/users-panel";
-import { useChat } from "../../hooks/use-chat";
 import { LogoutOutlined } from "@ant-design/icons";
+import { Message } from "../../stores/messages-store";
 import { useNavigate } from "react-router-dom";
 const { Header } = Layout;
 
-const ChatRoom: React.FC = () => {
-  const { sendMessage, onLogOut } = useChat();
+interface Props {
+  onLogOut: () => void;
+  sendMessage: (message: Message) => void;
+}
+const ChatRoom: React.FC<Props> = ({ onLogOut, sendMessage }) => {
   const navigate = useNavigate();
-  useEffect(() => {
-    const user = localStorage.getItem("user");
-    if (!user) {
-      navigate("/");
-    }
-  }, [navigate]);
+  const handleLogOut = () => {
+    navigate("/");
+    onLogOut();
+    navigate(0);
+  };
 
   return (
     <div className="chat-room">
       <Header className="header">
         <span className="header-title">World Of Warcraft Chat Room</span>
         <Tooltip title="Log-out">
-          <LogoutOutlined className="log-out-btn" onClick={onLogOut} />
+          <LogoutOutlined className="log-out-btn" onClick={handleLogOut} />
         </Tooltip>
       </Header>
       <Row>

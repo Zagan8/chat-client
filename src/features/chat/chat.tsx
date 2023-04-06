@@ -6,15 +6,23 @@ import { userStore } from "../../stores/user-store";
 import MessageCard from "../../components/message-card/message-card";
 import classNames from "classnames";
 import ChatForm from "./chat-form/chat-form";
+import messageService from "../../services/message-service";
 interface Props {
   sendMessage: (message: Message) => void;
 }
+
 const Chat: React.FC<Props> = ({ sendMessage }) => {
   const messageBoxRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    if (messageBoxRef.current) {
-      messageBoxRef.current.scrollTop = messageBoxRef.current.scrollHeight;
-    }
+    const init = async () => {
+      const messages = await messageService.getAllMessages();
+      messageStore.setMessages(messages);
+      if (messageBoxRef.current) {
+        messageBoxRef.current.scrollTop = messageBoxRef.current.scrollHeight;
+      }
+    };
+    init();
   }, []);
 
   return (

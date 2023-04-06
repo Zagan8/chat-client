@@ -1,15 +1,21 @@
 import { Button, Form, Input } from "antd";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { User, userStore } from "../../stores/user-store";
+import { userStore } from "../../stores/user-store";
 import { observer } from "mobx-react-lite";
-import userService from "../../services/user-service";
+import { Socket } from "socket.io-client";
 
-const Login: React.FC = () => {
+interface Props {
+  socket: Socket;
+}
+
+const Login: React.FC<Props> = ({ socket }) => {
   const navigate = useNavigate();
-  const [users, setUsers] = useState<User[]>();
+
   const onFinish = (name: { name: string }) => {
     userStore.setCurrentUser(name.name);
+    userStore.setConnectedUsers([name.name]);
+    socket.emit("log_in", userStore.currentUser);
     navigate("/main");
   };
   const onFinishFailed = (errorInfo: any) => {
@@ -22,16 +28,11 @@ const Login: React.FC = () => {
       if (storedName) {
         navigate("/main");
       }
-      const users = await userService.getAllUsers();
-      setUsers(users);
+      // const users = await userService.getAllUsers();
+      // setUsers(users);
     };
     init();
   }, [navigate]);
-
-  const checkIfUserExist = (userInput: string) => {
-    const foundUser = users?.find((user) => user.name === userInput);
-    return Boolean(foundUser);
-  };
 
   return (
     <div className="login">
@@ -49,20 +50,7 @@ const Login: React.FC = () => {
           <Form.Item
             label="Name"
             name="name"
-            rules={[
-              { required: true, message: "Please enter your name" },
-              {
-                validator: (_, value) => {
-                  if (checkIfUserExist(value)) {
-                    return Promise.reject(
-                      new Error("This user name already taken")
-                    );
-                  }
-                  return Promise.resolve();
-                },
-                message: "This user name already taken",
-              },
-            ]}
+            rules={[{ required: true, message: "Please enter your name" }]}
           >
             <Input />
           </Form.Item>

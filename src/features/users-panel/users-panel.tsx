@@ -8,9 +8,7 @@ const UsersPanel: React.FC = () => {
       <div className="connected-user-header">Connected Users</div>
       {userStore.connectedUsers?.map((user, index) => (
         <div className="connected-user" key={index}>
-          {user.name === userStore.currentUser
-            ? user.name + "(you)"
-            : user.name}
+          {user}
         </div>
       ))}
     </div>
