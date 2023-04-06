@@ -14,9 +14,6 @@ const Login: React.FC<Props> = ({ socket }) => {
 
     socket.emit("log_in", userStore.currentUser);
   };
-  const onFinishFailed = (errorInfo: any) => {
-    console.log("Failed:", errorInfo);
-  };
 
   return (
     <div className="login">
@@ -28,7 +25,6 @@ const Login: React.FC<Props> = ({ socket }) => {
           wrapperCol={{ span: 16 }}
           initialValues={{ remember: true }}
           onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
           autoComplete="off"
         >
           <Form.Item
