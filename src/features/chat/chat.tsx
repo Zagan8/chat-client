@@ -1,10 +1,9 @@
-import { Col, Input, Row } from "antd";
-import { useEffect, useRef, useState } from "react";
+import { Col, Row } from "antd";
+import { useEffect, useRef } from "react";
 import { Message, messageStore } from "../../stores/messages-store";
 import { observer } from "mobx-react-lite";
 import { userStore } from "../../stores/user-store";
 import MessageCard from "../../components/message-card/message-card";
-import { SendOutlined } from "@ant-design/icons";
 import classNames from "classnames";
 import ChatForm from "./chat-form/chat-form";
 interface Props {
@@ -16,7 +15,7 @@ const Chat: React.FC<Props> = ({ sendMessage }) => {
     if (messageBoxRef.current) {
       messageBoxRef.current.scrollTop = messageBoxRef.current.scrollHeight;
     }
-  }, [messageBoxRef.current]);
+  }, []);
 
   return (
     <>

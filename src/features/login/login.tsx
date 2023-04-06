@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { User, userStore } from "../../stores/user-store";
 import { observer } from "mobx-react-lite";
-import axios from "axios";
+import userService from "../../services/user-service";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
@@ -22,11 +22,11 @@ const Login: React.FC = () => {
       if (storedName) {
         navigate("/main");
       }
-      const users = await axios.get("http://localhost:8000/");
-      setUsers(users.data);
+      const users = await userService.getAllUsers();
+      setUsers(users);
     };
     init();
-  }, []);
+  }, [navigate]);
 
   const checkIfUserExist = (userInput: string) => {
     const foundUser = users?.find((user) => user.name === userInput);

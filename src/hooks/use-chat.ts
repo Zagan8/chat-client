@@ -30,12 +30,6 @@ export const useChat = () => {
       localStorage.setItem("socketId", socket.id);
     });
 
-    return () => {
-      socketRef.current?.disconnect();
-    };
-  }, []);
-
-  useEffect(() => {
     socketRef.current?.emit("create_user", {
       name: userStore.currentUser,
       room: "wow",
@@ -53,6 +47,6 @@ export const useChat = () => {
     return () => {
       socketRef.current?.disconnect();
     };
-  }, [socketRef.current]);
+  }, []);
   return { sendMessage, onLogOut };
 };

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { Col, Layout, Row, Tooltip } from "antd";
 import Chat from "../chat/chat";
 import UsersPanel from "../users-panel/users-panel";
@@ -15,7 +15,7 @@ const ChatRoom: React.FC = () => {
     if (!user) {
       navigate("/");
     }
-  }, []);
+  }, [navigate]);
 
   return (
     <div className="chat-room">

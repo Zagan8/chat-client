@@ -1,15 +1,13 @@
 import { Button, Col, Form, Input, Row } from "antd";
 import { SendOutlined } from "@ant-design/icons";
 import { userStore } from "../../../stores/user-store";
-import React, { useState } from "react";
+import React from "react";
 import { Message } from "../../../stores/messages-store";
-import { useForm } from "antd/es/form/Form";
 
 interface Props {
   sendMessage: (message: Message) => void;
 }
 const ChatForm: React.FC<Props> = ({ sendMessage }) => {
-  const [message, setMessage] = useState<string>("");
   const [form] = Form.useForm();
 
   const onFinish = (message: { message: string }) => {
