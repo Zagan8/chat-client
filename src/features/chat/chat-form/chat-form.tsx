@@ -33,7 +33,7 @@ const ChatForm: React.FC<Props> = ({ sendMessage }) => {
         name="message"
         rules={[{ required: true, message: "Please enter your message" }]}
       >
-        <Row justify={"center"} style={{ alignItems: "center" }}>
+        <Row justify={"center"} className="input-button-container">
           <Col span={22}>
             <Input placeholder="Message" />
           </Col>

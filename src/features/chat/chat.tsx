@@ -21,12 +21,7 @@ const Chat: React.FC<Props> = ({ sendMessage }) => {
   return (
     <>
       <Row className="chat">
-        <Col
-          span={24}
-          ref={messageBoxRef}
-          style={{ height: "85vh" }}
-          className="messages-box"
-        >
+        <Col span={24} ref={messageBoxRef} className="messages-box">
           {messageStore.messages?.map((message, index) => (
             <div
               key={index}

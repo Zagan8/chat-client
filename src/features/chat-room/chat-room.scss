@@ -1,0 +1,18 @@
+.chat-room {
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .header-title {
+      color: white;
+      font-size: 20px;
+    }
+
+    .log-out-btn {
+      color: red;
+      font-size: 30px;
+      cursor: pointer;
+    }
+  }
+}

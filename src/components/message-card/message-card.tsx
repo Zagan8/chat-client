@@ -12,7 +12,6 @@ const MessageCard: React.FC<Props> = ({ message }) => {
       className={classNames("message-card", {
         "author-message": message.author === userStore.currentUser,
       })}
-      style={{}}
     >
       <div className="message-author">{message.author}</div>
       <div className="message-text-time-container">

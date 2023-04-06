@@ -18,22 +18,11 @@ const ChatRoom: React.FC = () => {
   }, []);
 
   return (
-    <>
-      <Header
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <span style={{ color: "white", fontSize: "20px" }}>
-          World Of Warcraft Chat Room
-        </span>
+    <div className="chat-room">
+      <Header className="header">
+        <span className="header-title">World Of Warcraft Chat Room</span>
         <Tooltip title="Log-out">
-          <LogoutOutlined
-            onClick={onLogOut}
-            style={{ color: "red", fontSize: "30px", cursor: "pointer" }}
-          />
+          <LogoutOutlined className="log-out-btn" onClick={onLogOut} />
         </Tooltip>
       </Header>
       <Row>
@@ -42,7 +31,7 @@ const ChatRoom: React.FC = () => {
         </Col>
         <Col span={20}>{<Chat sendMessage={sendMessage} />}</Col>
       </Row>
-    </>
+    </div>
   );
 };
 
