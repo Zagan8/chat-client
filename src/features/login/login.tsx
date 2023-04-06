@@ -1,6 +1,5 @@
 import { Button, Form, Input } from "antd";
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import { userStore } from "../../stores/user-store";
 import { observer } from "mobx-react-lite";
 import { Socket } from "socket.io-client";
@@ -10,29 +9,14 @@ interface Props {
 }
 
 const Login: React.FC<Props> = ({ socket }) => {
-  const navigate = useNavigate();
-
   const onFinish = (name: { name: string }) => {
     userStore.setCurrentUser(name.name);
-    userStore.setConnectedUsers([name.name]);
+
     socket.emit("log_in", userStore.currentUser);
-    navigate("/main");
   };
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };
-
-  useEffect(() => {
-    const init = async () => {
-      const storedName = localStorage.getItem("user");
-      if (storedName) {
-        navigate("/main");
-      }
-      // const users = await userService.getAllUsers();
-      // setUsers(users);
-    };
-    init();
-  }, [navigate]);
 
   return (
     <div className="login">

@@ -1,24 +1,19 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "../features/login/login";
 import ChatRoom from "../features/chat-room/chat-room";
 import { useChat } from "../hooks/use-chat";
+import { userStore } from "../stores/user-store";
+import { observer } from "mobx-react-lite";
 
 const ChatRouter = () => {
-  const { sendMessage, onLogOut, socket } = useChat();
+  const isLoggedIn = Boolean(userStore.currentUser);
 
-  return (
-    <>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Login socket={socket} />} />
-          <Route
-            path="/main"
-            element={<ChatRoom onLogOut={onLogOut} sendMessage={sendMessage} />}
-          />
-        </Routes>
-      </Router>
-    </>
+  const { sendMessage, socket } = useChat();
+
+  return isLoggedIn ? (
+    <ChatRoom sendMessage={sendMessage} />
+  ) : (
+    <Login socket={socket} />
   );
 };
 
-export default ChatRouter;
+export default observer(ChatRouter);

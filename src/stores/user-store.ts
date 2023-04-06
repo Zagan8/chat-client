@@ -6,31 +6,18 @@ class UserStore {
 
   @observable
   currentUser: string = "";
+
   constructor() {
     makeObservable(this);
   }
 
+  @action
   setConnectedUsers(users: string[]) {
     this.connectedUsers = [...users];
   }
+  @action
   setCurrentUser(userName: string) {
     this.currentUser = userName;
-  }
-
-  @action
-  deleteConnectedUser(userName: string) {
-    const indexOfUserToDelete = this.connectedUsers.findIndex(
-      (connectedUser) => {
-        return connectedUser === userName;
-      }
-    );
-    if (indexOfUserToDelete > -1) {
-      this.connectedUsers.splice(indexOfUserToDelete, 1);
-    }
-  }
-  @action
-  addConnectedUser(user: string) {
-    this.connectedUsers.push(user);
   }
 }
 

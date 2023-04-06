@@ -7,21 +7,21 @@ export interface Message {
 
   createdAt?: string;
 }
+
 class MessageStore {
   @observable
   messages: Message[] = [];
+
   constructor() {
     makeObservable(this);
-
-    console.log(this.messages);
   }
 
   setMessages(messagesInfo: Message[]) {
-    console.log("davay", messagesInfo);
     if (messagesInfo) {
       this.messages = [...messagesInfo];
     }
   }
+
   @action
   setMessage(message: Message) {
     if (this.messages.find((m) => m._id === message._id)) {
