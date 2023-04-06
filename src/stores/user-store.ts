@@ -2,7 +2,7 @@ import { action, makeObservable, observable } from "mobx";
 
 export interface User {
   name: string;
-  socketId: string;
+  _id: string;
 }
 class UserStore {
   @observable
@@ -22,9 +22,12 @@ class UserStore {
   }
 
   @action
-  deleteConnectedUser(userSocketId: string) {
+  deleteConnectedUser(id: string) {
     const indexOfUserToDelete = this.connectedUsers.findIndex(
-      (connectedUser) => connectedUser.socketId === userSocketId
+      (connectedUser) => {
+        console.log(id, connectedUser._id);
+        return connectedUser._id === id;
+      }
     );
     if (indexOfUserToDelete > -1) {
       this.connectedUsers.splice(indexOfUserToDelete, 1);
